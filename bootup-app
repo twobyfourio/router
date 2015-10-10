@@ -1,0 +1,4 @@
+cd /Users/nj/Sites/twobyfour/marketplace/
+sleep 1 # wait for postgres
+bundle exec puma -C config/puma.rb --port 2942
+

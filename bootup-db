@@ -1,0 +1,8 @@
+if [ -f /opt/boxen/homebrew/var/postgres9.3/postmaster.pid ]; then
+  killall postgresql
+  kill `head -n 1 /opt/boxen/homebrew/var/postgres9.3/postmaster.pid`
+  rm /opt/boxen/homebrew/var/postgres9.3/postmaster.pid
+  sleep 5
+fi
+
+postgres -D /opt/boxen/homebrew/var/postgres9.3

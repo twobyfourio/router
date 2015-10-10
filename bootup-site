@@ -1,0 +1,2 @@
+cd ../site
+middleman server -p 2941 --verbose
