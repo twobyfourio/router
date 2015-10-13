@@ -1,4 +1,6 @@
 cd /Users/nj/Sites/twobyfour/marketplace/
 sleep 1 # wait for postgres
+( bundle check || bundle install ) | grep -v satisfied
+kill -9 `ps x | grep puma | cut -f2 -d ' ' | sort -r | tail -n 1` 2> /dev/null || true
 bundle exec puma -C config/puma.rb --port 2942
 

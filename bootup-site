@@ -1,2 +1,6 @@
 cd ../site
+echo "== The Middleman is Booting"
+( bundle check || bundle install ) | grep -v satisfied
+kill -9 `ps x | grep middleman | cut -f2 -d ' ' | sort -r | tail -n 1` 2> /dev/null || true
 middleman server -p 2941 --verbose
+
