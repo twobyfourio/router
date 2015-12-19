@@ -1,6 +1,20 @@
-cd ../site
-echo "== The Middleman is Booting"
+if ! [[ -d 'site' ]]; then
+  echo "Please 'ln -s PATH_TO_SITE site', possibly '~/Sites/twobyfour/site'"
+  exit 1
+fi
+
+# Ok, here we go
+cd site
+
+# Dependencies good to go?
 ( bundle check || bundle install ) | grep -v satisfied
-kill -9 `ps x | grep middleman | cut -f2 -d ' ' | sort -r | tail -n 1` 2> /dev/null || true
+
+# Is it already running? That would cause problems
+kill -9 `ps x | grep middleman | cut -f1 -d 's' | sort -r | tail -n 1` 2> /dev/null || true
+
+# Just need a second...
+sleep 3
+
+# Here we go!
 foreman run middleman server -p 2941 --verbose
 
